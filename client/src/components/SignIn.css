@@ -1,0 +1,70 @@
+/* SignIn.css */
+
+.auth-form {
+    background: linear-gradient(135deg, #fff3e0, #ffcc80);
+    padding: 40px;
+    border-radius: 12px;
+    max-width: 400px;
+    width: 90%;
+    margin: 80px auto;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    text-align: center;
+  }
+  
+  .auth-form h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .auth-form form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .auth-form input {
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+  }
+  
+  .auth-form button {
+    padding: 12px;
+    background-color: #0066cc;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+  }
+  
+  .auth-form button:hover {
+    background-color: #005bb5;
+  }
+  
+  .auth-form p {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #333;
+  }
+  
+  .auth-form a {
+    color: #0066cc;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .auth-form a:hover {
+    text-decoration: underline;
+  }
+  
+  .error {
+    color: #d32f2f;
+    margin-bottom: 15px;
+    font-weight: bold;
+  }
+  

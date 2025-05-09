@@ -1,0 +1,23 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-subscriptionbilling-dev-d03cf-authRole",
+      "UnauthRoleArn": "arn:aws:iam::905418154834:role/amplify-subscriptionbilling-dev-d03cf-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::905418154834:role/amplify-subscriptionbilling-dev-d03cf-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-subscriptionbilling-dev-d03cf-deployment",
+      "UnauthRoleName": "amplify-subscriptionbilling-dev-d03cf-unauthRole",
+      "StackName": "amplify-subscriptionbilling-dev-d03cf",
+      "StackId": "arn:aws:cloudformation:us-east-1:905418154834:stack/amplify-subscriptionbilling-dev-d03cf/bdca5080-1c66-11f0-8894-0ed5ddb136ef",
+      "AmplifyAppId": "d3h5pvschnhwo4"
+    },
+    "categories": {
+      "auth": {
+        "subscriptionbillingdfe51749": {}
+      },
+      "function": {
+        "processPayment": {}
+      }
+    }
+  }
+}

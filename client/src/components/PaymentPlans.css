@@ -1,0 +1,160 @@
+.plans-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .plans-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  
+  .plan-card {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 2rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .plan-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .plan-card.selected {
+    border: 2px solid #4CAF50;
+    background-color: #f8f9fa;
+  }
+  
+  .price {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 1rem 0;
+    color: #333;
+  }
+  
+  .features {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0;
+  }
+  
+  .features li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .select-btn {
+    width: 100%;
+    padding: 0.8rem;
+    background-color: #f0f0f0;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .select-btn:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .proceed-container {
+    margin-top: 3rem;
+    text-align: center;
+  }
+  
+  .proceed-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .proceed-btn:hover {
+    background-color: #45a049;
+  }
+  
+  .proceed-btn:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+  }
+  
+  .error-message {
+    color: #d32f2f;
+    background-color: #fde8e8;
+    padding: 1rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+  
+  .secure-payment-note {
+    color: #666;
+    font-size: 0.9rem;
+    margin-top: 1rem;
+  }
+  
+  .spinner {
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: white;
+    animation: spin 1s ease-in-out infinite;
+  }
+  
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+/* Add these styles to your existing CSS */
+
+.loading-payment {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    color: #666;
+    padding: 1rem;
+    background-color: #f5f5f5;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+  }
+  
+  .spinner {
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid rgba(0, 0, 0, 0.3);
+    border-radius: 50%;
+    border-top-color: #000;
+    animation: spin 1s ease-in-out infinite;
+  }
+  
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+  
+  .proceed-container {
+    margin-top: 2rem;
+    text-align: center;
+  }
+  
+  /* Ensure the payment button is properly styled even when disabled */
+  .proceed-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }

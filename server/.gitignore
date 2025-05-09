@@ -1,0 +1,19 @@
+# 1. SECRETS - MOST IMPORTANT!
+.env
+.env.local
+.env.*
+!.env.example  # Keep template file
+
+# 2. NODE MODULES - Never commit these
+node_modules/
+
+# 3. LOGS - May contain sensitive data
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# 4. RUNTIME FILES
+*.pid
+*.seed
+.DS_Store

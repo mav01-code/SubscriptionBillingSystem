@@ -1,0 +1,193 @@
+/* Header and Footer */
+.app-header, .app-footer {
+  background: linear-gradient(135deg, #fff3e0, #ffcc80);
+  padding: 20px 20px;
+  text-align: center;
+  color: #333;
+  font-size: 14px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+.app-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 10px;
+  background: linear-gradient(135deg, #fff3e0, #ffcc80);
+  text-align: center;
+  font-size: 14px;
+  color: #333;
+  box-shadow: 0 -1px 4px rgba(0, 0, 0, 0.05);
+  z-index: 10; /* Ensure the footer stays above other content */
+}
+
+/* Header Navigation - Sign In and Sign Up Links */
+.auth-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px; /* Space between the links */
+}
+
+.auth-link {
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 16px;
+  color: #d35400; /* Orange color */
+  transition: color 0.3s, transform 0.3s;
+}
+
+.auth-link:hover {
+  color: #ff9800; /* Darker orange on hover */
+  transform: translateY(-2px); /* Slightly raise the link on hover */
+}
+
+.divider {
+  color: #6d4c41; /* Subtle divider color */
+}
+
+/* Body */
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #fff8e1, #ffe0b2);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* Ensure the body takes full height */
+}
+
+/* Content Container */
+.container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Vertically center the content */
+  align-items: center; /* Horizontally center the content */
+  text-align: center;
+  padding: 2rem 1rem;
+  margin-bottom: 60px; /* Add space for footer */
+}
+
+/* Plans Section */
+.plans {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 40px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+/* Each Plan Card */
+.plan {
+  background: #ffcc80;
+  padding: 35px;
+  border-radius: 16px;
+  width: 350px; /* Increased size for larger cards */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  transition: transform 0.4s, box-shadow 0.4s;
+  text-align: center;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+
+.plan:hover {
+  transform: scale(1.05);
+  border: 2px solid black;
+}
+
+.plan.selected {
+  background: #ff9800;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+}
+
+.plan.selected .price {
+  color: white;
+  font-weight: bold;
+}
+
+/* Price inside Plan */
+.price {
+  font-weight: bold;
+  font-size: 22px;
+  color: #d35400;
+  margin-bottom: 15px;
+}
+
+/* Plan Features List */
+.plan ul {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+  margin-top: 15px;
+}
+
+.plan ul li {
+  margin: 10px 0;
+  font-size: 18px;
+  color: #6d4c41;
+}
+
+/* Pay Button */
+.pay-btn {
+  background: #ff9800;
+  width: 100%;
+  max-width: 270px;
+  margin-top: 25px;
+  border: none;
+  padding: 12px;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+  opacity: 0.5;
+  pointer-events: none;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.pay-btn.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.pay-btn:hover {
+  background: #f57c00;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .plans {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .plan {
+    width: 80%; /* Adjust plan card size on smaller screens */
+  }
+}
+
+.info-section {
+  background: rgba(255, 204, 128, 0.8); /* Semi-transparent to match the background */
+  padding: 30px;
+  border-radius: 8px;
+  margin-top: 40px;
+  width: 80%;
+  max-width: 600px;
+  text-align: center;
+}
+
+.info-section h2 {
+  font-size: 24px;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.info-section p {
+  font-size: 16px;
+  color: #6d4c41;
+}
