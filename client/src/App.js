@@ -4,6 +4,7 @@ import PaymentPlans from './components/PaymentPlans';
 import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
 import Dashboard from './components/Dashboard';
+import Success from './components/Success';
 import { getCurrentUser, signOut } from './auth/cognito';
 import './App.css';
 
@@ -41,7 +42,7 @@ function App() {
     }
     try {
       console.log('Processing payment for:', user.username, selectedPlan);
-      navigate('/dashboard');
+      navigate('/success'); // ✅ Redirect to success page after payment
     } catch (error) {
       console.error('Payment failed:', error);
     }
@@ -72,8 +73,8 @@ function App() {
         <nav className="auth-nav">
           {user ? (
             <>
-              {/* <span className="welcome-message">Welcome, {user.username}</span> */}
-              {/* <button onClick={handleSignOut} className="sign-out-btn">
+              {/* <span className="welcome-message">Welcome, {user.username}</span>
+              <button onClick={handleSignOut} className="sign-out-btn">
                 Sign Out
               </button> */}
             </>
@@ -89,10 +90,22 @@ function App() {
 
       <main className="main-content">
         <Routes>
-          <Route path="/" element={<PaymentPlans plans={plans} selectedPlan={selectedPlan} onSelectPlan={setSelectedPlan} onPayment={handlePayment} isAuthenticated={!!user} />} />
+          <Route
+            path="/"
+            element={
+              <PaymentPlans
+                plans={plans}
+                selectedPlan={selectedPlan}
+                onSelectPlan={setSelectedPlan}
+                onPayment={handlePayment}
+                isAuthenticated={!!user}
+              />
+            }
+          />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/dashboard" element={user ? <Dashboard /> : <Navigate to="/dashboard" replace />} />
+          <Route path="/success" element={<Success />} /> {/* ✅ Success route */}
         </Routes>
       </main>
 
