@@ -4,6 +4,7 @@ const cors = require("cors");
 const Stripe = require("stripe");
 const path = require("path");
 const { S3Client, PutObjectCommand } = require("@aws-sdk/client-s3");
+const AWS = require("aws-sdk");
 
 const app = express();
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
@@ -11,6 +12,24 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 app.use(express.json());
 app.use(cors());
 app.use(express.static(path.join(__dirname, "public")));
+
+// AWS S3 client
+const s3 = new S3Client({
+  region: process.env.AWS_REGION,
+  credentials: {
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  },
+});
+
+// AWS SNS client
+const sns = new AWS.SNS({
+  region: process.env.AWS_REGION,
+  credentials: {
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  },
+});
 
 // Create Checkout Session
 app.post("/create-checkout-session", async (req, res) => {
@@ -37,20 +56,12 @@ app.post("/create-checkout-session", async (req, res) => {
   res.json({ id: session.id });
 });
 
-// AWS S3 client
-const s3 = new S3Client({
-  region: process.env.AWS_REGION,
-  credentials: {
-    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-  },
-});
-
-// Save user plan to S3
+// Save user plan to S3 and subscribe to SNS
 app.post("/store-plan", async (req, res) => {
   const { sessionId } = req.body;
 
   try {
+    // Retrieve session details from Stripe
     const session = await stripe.checkout.sessions.retrieve(sessionId, {
       expand: ["customer"],
     });
@@ -58,6 +69,7 @@ app.post("/store-plan", async (req, res) => {
     const userEmail = session.customer_details.email;
     const planName = session.display_items?.[0]?.custom?.name || "Unknown";
 
+    // Store subscription plan in S3
     const s3Params = {
       Bucket: process.env.S3_BUCKET_NAME,
       Key: `subscriptions/${userEmail}.json`,
@@ -71,10 +83,20 @@ app.post("/store-plan", async (req, res) => {
 
     await s3.send(new PutObjectCommand(s3Params));
 
-    res.status(200).json({ message: "Plan stored successfully" });
+    // Subscribe the user to the SNS topic
+    const snsParams = {
+      Protocol: "email", // Email as the subscription protocol
+      Endpoint: userEmail, // The user's email
+      TopicArn: process.env.SNS_TOPIC_ARN, // Use your SNS Topic ARN directly
+    };
+
+    const snsResponse = await sns.subscribe(snsParams).promise();
+    console.log("SNS subscription response:", snsResponse);
+
+    res.status(200).json({ message: "Plan stored successfully and user subscribed to SNS. Please confirm your email subscription." });
   } catch (error) {
-    console.error("Error storing to S3:", error);
-    res.status(500).json({ error: "Failed to store plan" });
+    console.error("Error storing to S3 or subscribing to SNS:", error);
+    res.status(500).json({ error: "Failed to store plan or subscribe user" });
   }
 });
 
